@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper" >
-
     <p><input type="text" v-model="titleFilter" @input="filterParam"/></p>
     <table	class="table table-bordered">
       <thead>
@@ -8,7 +7,7 @@
         <th scope="col"
             v-for="items in header "
             >
-          <a href="#" @click="test(items)">{{items.type}}</a>
+          <a href="#" @click="setFilter(items)">{{items.type}}</a>
         </th>
       </tr>
       </thead>
@@ -29,12 +28,12 @@
     <button class="btn btn-primary"
       :disabled="pageNumber === 0"
       @click="prevPage">
-      < Previous
+      Previous
     </button>
     <button class="btn btn-primary"
       :disabled="pageNumber >= pageCount -1"
       @click="nextPage">
-      Next >
+      Next
     </button>
 
   </div>
@@ -102,7 +101,7 @@ export default {
       prevPage(){
         this.pageNumber--;
       },
-    test(data){
+    setFilter(data){
       if(data.type===this.currentFilter.type && this.currentFilter.order === 'desc'){
         this.currentFilter = {...this.prevFilter}
       }else if(data.type===this.currentFilter.type){
