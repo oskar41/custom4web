@@ -42,7 +42,6 @@
 
 <script>
 
-import db from '../data/db.json'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vue from 'vue'
@@ -56,10 +55,8 @@ export default {
     return {
       loading: true,
       db: [],
-      sortParam: '',
       titleFilter: '',
       pageNumber: 0,
-      dbOld: {},
       currentFilter: {
         order: 'asc',
         type: 'id'
@@ -131,8 +128,6 @@ export default {
       }else{
         this.db.sort((d1, d2) =>  d1[this.currentFilter.type] >  d2[this.currentFilter.type] ? 1 : -1)
       }
-
-
       return this.currentFilter.order === 'asc' ? [...this.db] : [...this.db.reverse()]
     }
   },
@@ -160,7 +155,6 @@ export default {
   },
   mounted() {
     setTimeout(this.getData, 2000);
-
   }
 }
 
